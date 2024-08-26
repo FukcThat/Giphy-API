@@ -4,21 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giphy API</title>
+    <style>
+      body {
+        background: rgb(36, 35, 35);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      button {
+        cursor: pointer;
+        height: 4rem;
+        width: 12rem;
+        font-size: 1.25rem;
+        color: white;
+        background-color: rgb(176, 87, 10);
+        border: none;
+      }
+
+      img {
+        margin-top: 12rem;
+        height: 30rem;
+        width: 30rem;
+        object-fit: cover;
+      }
+    </style>
   </head>
-  <body>
+  <body onload="fetchCatGif()">
     <img src="#" alt="" />
+    <button class="new-cat-btn">Another Cat Please</button>
     <script>
       const img = document.querySelector("img");
-      fetch(
-        "https://api.giphy.com/v1/gifs/translate?api_key=Ynj3YARhHhwDASPE0Qbsj0BpW3ydL6Sb&s=cats",
-        { mode: "cors" }
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (response) {
-          img.src = response.data.images.original.url;
-        });
+      const newCatBtn = document.querySelector(".new-cat-btn");
+
+      const fetchCatGif = () => {
+        fetch(
+          "https://api.giphy.com/v1/gifs/translate?api_key=Ynj3YARhHhwDASPE0Qbsj0BpW3ydL6Sb&s=cats",
+          { mode: "cors" }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (response) {
+            img.src = response.data.images.original.url;
+          });
+      };
+
+      newCatBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        fetchCatGif();
+      });
     </script>
   </body>
 </html>
