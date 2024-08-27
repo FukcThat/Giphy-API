@@ -13,7 +13,22 @@
         gap: 2rem;
       }
 
-      button {
+      img {
+        margin-top: 5rem;
+        height: 30rem;
+        width: 30rem;
+        object-fit: cover;
+      }
+
+      .search-bar-wrapper {
+        margin-top: 5rem;
+        height: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .new-cat-btn {
         cursor: pointer;
         height: 4rem;
         width: 12rem;
@@ -23,21 +38,86 @@
         border: none;
       }
 
-      img {
-        margin-top: 12rem;
-        height: 30rem;
-        width: 30rem;
-        object-fit: cover;
+      .search-btn {
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      input {
+        height: 2rem;
+        width: 20rem;
+        border-radius: 0.5rem;
+        border: none;
       }
     </style>
   </head>
   <body onload="fetchCatGif()">
+    <div class="search-bar-wrapper">
+      <button type="button" class="search-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="2em"
+          height="2em"
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="none"
+            stroke="white"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          >
+            <path
+              fill="currentColor"
+              fill-opacity="0"
+              stroke-dasharray="40"
+              stroke-dashoffset="40"
+              d="M10.76 13.24c-2.34 -2.34 -2.34 -6.14 0 -8.49c2.34 -2.34 6.14 -2.34 8.49 0c2.34 2.34 2.34 6.14 0 8.49c-2.34 2.34 -6.14 2.34 -8.49 0Z"
+            >
+              <animate
+                fill="freeze"
+                attributeName="fill-opacity"
+                begin="0.7s"
+                dur="0.15s"
+                values="0;0.3"
+              />
+              <animate
+                fill="freeze"
+                attributeName="stroke-dashoffset"
+                dur="0.5s"
+                values="40;0"
+              />
+            </path>
+            <path
+              stroke-dasharray="12"
+              stroke-dashoffset="12"
+              d="M10.5 13.5l-7.5 7.5"
+            >
+              <animate
+                fill="freeze"
+                attributeName="stroke-dashoffset"
+                begin="0.5s"
+                dur="0.2s"
+                values="12;0"
+              />
+            </path>
+          </g>
+        </svg>
+      </button>
+
+      <input type="search" class="search-input" placeholder="Search for gifs" />
+    </div>
     <img src="#" alt="" />
-    <button class="new-cat-btn">Another Cat Please</button>
+    <button type="button" class="new-cat-btn">Another Cat Please</button>
     <script>
+      // Variables
       const img = document.querySelector("img");
       const newCatBtn = document.querySelector(".new-cat-btn");
+      const searchInput = document.querySelector(".search-input");
+      const searchBtn = document.querySelector(".search-btn");
 
+      // Fetch Function
       const fetchCatGif = () => {
         fetch(
           "https://api.giphy.com/v1/gifs/translate?api_key=Ynj3YARhHhwDASPE0Qbsj0BpW3ydL6Sb&s=cats",
@@ -51,6 +131,7 @@
           });
       };
 
+      //Event Listeners
       newCatBtn.addEventListener("click", (e) => {
         e.preventDefault();
         fetchCatGif();
