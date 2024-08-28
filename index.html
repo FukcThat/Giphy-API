@@ -4,53 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giphy API</title>
-    <style>
-      body {
-        background: rgb(36, 35, 35);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      img {
-        margin-top: 5rem;
-        height: 30rem;
-        width: 30rem;
-        object-fit: cover;
-      }
-
-      .search-bar-wrapper {
-        margin-top: 5rem;
-        height: 2rem;
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .new-cat-btn {
-        cursor: pointer;
-        height: 4rem;
-        width: 12rem;
-        font-size: 1.25rem;
-        color: white;
-        background-color: rgb(176, 87, 10);
-        border: none;
-      }
-
-      .search-btn {
-        cursor: pointer;
-        background: none;
-        border: none;
-      }
-
-      input {
-        height: 2rem;
-        width: 20rem;
-        border-radius: 0.5rem;
-        border: none;
-      }
-    </style>
+    <script src="gif.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="fetchCatGif()">
     <div class="search-bar-wrapper">
@@ -105,37 +60,9 @@
           </g>
         </svg>
       </button>
-
       <input type="search" class="search-input" placeholder="Search for gifs" />
     </div>
     <img src="#" alt="" />
     <button type="button" class="new-cat-btn">Another Cat Please</button>
-    <script>
-      // Variables
-      const img = document.querySelector("img");
-      const newCatBtn = document.querySelector(".new-cat-btn");
-      const searchInput = document.querySelector(".search-input");
-      const searchBtn = document.querySelector(".search-btn");
-
-      // Fetch Function
-      const fetchCatGif = () => {
-        fetch(
-          "https://api.giphy.com/v1/gifs/translate?api_key=Ynj3YARhHhwDASPE0Qbsj0BpW3ydL6Sb&s=cats",
-          { mode: "cors" }
-        )
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (response) {
-            img.src = response.data.images.original.url;
-          });
-      };
-
-      //Event Listeners
-      newCatBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        fetchCatGif();
-      });
-    </script>
   </body>
 </html>
